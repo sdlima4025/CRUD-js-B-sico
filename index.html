@@ -11,15 +11,56 @@
   console.log('Olá pessoas! - nivél 02');
   console.log('Construindo CRUDS');
 
+  // "MODELO"
+  const miniRedeSocial = {
+  usuarios:[
+    {
+      username:'sergiolima',
+    }
+  ],
+  posts:[
+    { 
+      id: 1,
+      owner: 'sergiolima',
+      content: 'Meu primeiro twitter'
+    }
+  ],
+
+  // Cria posts na Memória(array/objeto)
+  criaPost(dados, htmlOnly = false) {
+    if(!htmlOnly) {
+      miniRedeSocial.posts.push({
+      id: miniRedeSocial.posts.length +1,
+      owner: dados.owner, 
+      content: dados.content
+    });
+    }
+  
+      // Cria posts no HTML
+      const $listaDePosts = document.querySelector('.listaDePosts');
+      $listaDePosts.insertAdjacentHTML("afterbegin", `<li>${dados.content}</li>` );
+  }
+
+};
+
+  //[Código de Front End: WEB]
   const $meuForm = document.querySelector('form');
   console.log($meuForm);
 
+  // CRUD [READ]
+    miniRedeSocial.posts.forEach(({owner, content}) => {
+      miniRedeSocial.criaPost({owner: owner, content: content}, true);
+  })
+
+// CRUD [CREATE]
   $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
     infosDoEvento.preventDefault();
     console.log('Estamos criando um novo post!')
     const $campoCriaPost = document.querySelector('input[name = "campoCriaPost"]');
-    const $listaDePosts = document.querySelector('.listaDePosts');
-    // alert($campoCriaPost.value);
-   console.log($listaDePosts);
-  })
+
+    miniRedeSocial.criaPost({owner:'silviolima', content: $campoCriaPost.value });
+
+    $campoCriaPost.value = '';
+  
+    })
 </script>
