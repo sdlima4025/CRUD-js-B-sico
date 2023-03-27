@@ -1,0 +1,25 @@
+<form> 
+  <input name="campoCriaPost" placeholder="Digite seu post" data-input="campoCriaPost">
+  <button type="submit">Postar</button>
+</form>
+<ul class="listaDePosts">
+
+</ul>
+
+
+<script>
+  console.log('Olá pessoas! - nivél 02');
+  console.log('Construindo CRUDS');
+
+  const $meuForm = document.querySelector('form');
+  console.log($meuForm);
+
+  $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
+    infosDoEvento.preventDefault();
+    console.log('Estamos criando um novo post!')
+    const $campoCriaPost = document.querySelector('input[name = "campoCriaPost"]');
+    const $listaDePosts = document.querySelector('.listaDePosts');
+    // alert($campoCriaPost.value);
+   console.log($listaDePosts);
+  })
+</script>
